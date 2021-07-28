@@ -13,7 +13,7 @@ namespace EventCatalogAPI.Domain
         public decimal Price { get; set; }
         public string Location { get; set; }
         public string Venue { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string PictureUrl { get; set; }
         public string Tags { get; set; }
 
