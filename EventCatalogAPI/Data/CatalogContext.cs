@@ -9,6 +9,10 @@ namespace EventCatalogAPI.Data
 {
     public class CatalogContext : DbContext
     {
+        public CatalogContext(DbContextOptions options) : base(options)
+        {
+
+        }
         public DbSet<EventType> EventTypes { get; set; }
         public DbSet<EventOrganizer> EventOrganizers { get; set; }
         public DbSet<Event> Events { get; set; }
@@ -33,6 +37,7 @@ namespace EventCatalogAPI.Data
                 e.Property(ev => ev.Id).IsRequired().ValueGeneratedOnAdd();
                 e.Property(ev => ev.Name).IsRequired().HasMaxLength(100);
                 e.Property(ev => ev.Location).IsRequired().HasMaxLength(100);
+                e.Property(ev => ev.Venue).IsRequired();
                 e.Property(ev => ev.Price).IsRequired();
                 e.Property(ev => ev.Date).IsRequired();
                 e.HasOne(ev => ev.EventType).WithMany().HasForeignKey(ev => ev.EventTypeId);
