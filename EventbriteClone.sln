@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{B3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{9DAE9AF3-DFE1-4A9D-8350-B3A1486B412D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventCatalogAPI", "EventCatalogAPI\EventCatalogAPI.csproj", "{650571DF-000C-4F6C-8EC0-4620408A291F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventCatalogAPI", "EventCatalogAPI\EventCatalogAPI.csproj", "{650571DF-000C-4F6C-8EC0-4620408A291F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CCB51A2B-F154-4B23-8DFC-A86ED733DB57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{650571DF-000C-4F6C-8EC0-4620408A291F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{650571DF-000C-4F6C-8EC0-4620408A291F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{650571DF-000C-4F6C-8EC0-4620408A291F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB51A2B-F154-4B23-8DFC-A86ED733DB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB51A2B-F154-4B23-8DFC-A86ED733DB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB51A2B-F154-4B23-8DFC-A86ED733DB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB51A2B-F154-4B23-8DFC-A86ED733DB57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
