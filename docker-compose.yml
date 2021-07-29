@@ -29,9 +29,9 @@ services:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "EventsAPI!"
+      SA_PASSWORD: EventsAPI!
     ports:
-      - "1448:1433"
-    container_name: "eventssqlserver"
+      - "1500:1433"
+    container_name: eventssqlserver
     networks:
       - backend
