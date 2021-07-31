@@ -16,7 +16,7 @@ namespace EventCatalogAPI.Domain
         public DateTime Date { get; set; }
         public string PictureUrl { get; set; }
         public string Tags { get; set; }
-
+        public string Address { get; set; }
         public int EventTypeId { get; set; }
         public int EventOrganizerId { get; set; }
         public virtual EventType EventType { get; set; }
