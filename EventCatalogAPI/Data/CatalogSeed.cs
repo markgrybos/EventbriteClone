@@ -37,9 +37,9 @@ namespace EventCatalogAPI.Data
                 new Event
                 {
                     Name="Saturday Work Party in Volunteer Park",Description="clean up the garden beds in Seattle’s Volunteer Park ",
-                    Price=0,Location="Seattle, WA",Venue="Volunteer Park",Date=DateTime.Parse("10/1/2021 11:30:00AM"),
+                    Price=0,Location="Seattle, WA",Venue="Volunteer Park",Address="1247 15th Avenue East",Date=DateTime.Parse("10/1/2021 11:30:00AM"),
                     PictureUrl="http://externalcatalogbaseurltobereplaced/api/pic/1",
-                    Tags="Volunteer Saturday",Address="1247 15th Avenue East",EventOrganizerId=1,EventTypeId=1
+                    Tags="Volunteer Saturday",EventOrganizerId=1,EventTypeId=1
 
                 },
                 new Event
