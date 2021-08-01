@@ -16,6 +16,7 @@ namespace EventCatalogAPI.Controllers
     [ApiController]
     public class CatalogController : ControllerBase
     {
+
         private readonly CatalogContext _context;
         private readonly IConfiguration _config;
         public CatalogController(CatalogContext context, IConfiguration config)
@@ -59,6 +60,5 @@ namespace EventCatalogAPI.Controllers
         }
 
     }
-
 }
 
