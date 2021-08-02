@@ -24,7 +24,7 @@ namespace EventCatalogAPI.Controllers
             _context = context;
             _config = config;
         }
-        [HttpGet("[action]/{pageIndex}/{pageSize}")]
+        [HttpGet("[action]")]
         public async Task<IActionResult> Events(
             [FromQuery] int pageIndex = 0,
             [FromQuery] int pageSize = 6)
@@ -46,7 +46,7 @@ namespace EventCatalogAPI.Controllers
 
 
             };
-            return Ok(events);
+            return Ok(model);
 
         }
 
