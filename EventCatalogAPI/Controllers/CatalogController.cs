@@ -49,7 +49,53 @@ namespace EventCatalogAPI.Controllers
             return Ok(model);
 
         }
+        [HttpGet("[Action]")]
+        public async Task<IActionResult> EventTypes()
+        {
+            var types = await _context.EventTypes.ToListAsync();
+            return Ok(types);
+        }
+        [HttpGet("[Action]")]
+        public async Task<IActionResult> EventOrganizers()
+        {
+            var organizers = await _context.EventOrganizers.ToListAsync();
+            return Ok(organizers);
+        }
+        [HttpGet("[Action]/type/{EventTypeId}/organizer/{EventOraganizerId}")]
+        public async Task<IActionResult> Events(int? EventTypeId,
+            int? EventOraganizerId,
+            [FromQuery] int pageIndex = 0,
+            [FromQuery] int pageSize = 6)
+        {
+            var query = (IQueryable<Event>)_context.Events;
+            if(EventTypeId.HasValue)
+            {
+                query=query.Where(T => T.EventTypeId == EventTypeId);
+            }
+            if (EventOraganizerId.HasValue)
+            {
+                query=query.Where(O => O.EventOrganizerId == EventOraganizerId);
+            }
+            var eventsCount = query.LongCountAsync();
+            var events = await query
+                  .OrderBy(e => e.Name)
+                  .Skip(pageIndex * pageSize)
+                  .Take(pageSize)
+                  .ToListAsync();
 
+            events = ChangePictureUrl(events);
+            var model = new PaginatedEventsViewModels
+            {
+                PageIndex = pageIndex,
+                PageSize = events.Count,
+                Count = eventsCount.Result,
+                Data = events
+
+
+            };
+            return Ok(model);
+
+        }
         private List<Event> ChangePictureUrl(List<Event> events)
         {
             events.ForEach(events =>
