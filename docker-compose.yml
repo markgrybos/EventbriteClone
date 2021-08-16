@@ -25,6 +25,21 @@ services:
     depends_on:
       - mssqlserver    
 
+  webmvc:
+    image: events/webmvc
+    build:
+      context: .\WebMvc
+      dockerfile: Dockerfile
+    environment:
+      CatalogUrl: http://eventscatalog
+    ports:
+      - "7025:80"
+    container_name: webshop
+    networks:
+      - frontend
+    depends_on:
+      - eventscatalog
+
   mssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:

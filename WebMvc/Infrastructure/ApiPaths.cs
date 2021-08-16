@@ -24,7 +24,7 @@ namespace WebMvc.Infrastructure
                 {
                     var OrganizerQs = (Organizer.HasValue) ? Organizer.Value.ToString() : "null";
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
-                    filterQs = $"/type/{typeQs}/brand/{OrganizerQs}";
+                    filterQs = $"/type/{typeQs}/Organizer/{OrganizerQs}";
                 }
                 return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";
             }     

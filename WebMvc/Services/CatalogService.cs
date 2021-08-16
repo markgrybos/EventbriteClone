@@ -19,7 +19,7 @@ namespace WebMvc.Services
 
         public CatalogService(IConfiguration config, IHttpClient client)
         {
-            _baseUrl = $"{config["EventsCatalogUrl"]}/api/Catalog/";
+            _baseUrl = $"{config["EventsCatalogUrl"]}/api/catalog/";
             _client = client;
         }
         public async Task<EventsCatalog> GetEventsAsync(int page, int size, int? Organizer, int? type)

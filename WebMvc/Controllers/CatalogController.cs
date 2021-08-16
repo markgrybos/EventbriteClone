@@ -18,7 +18,7 @@ namespace WebMvc.Controllers
         public async Task<IActionResult> Index(int? page,int? organizerFilterApplied,int? typeFilterApplied)
         {
             var itemsOnPage = 10;
-            var events= await _service.GetEventsAsync(page ??0, itemsOnPage, organizerFilterApplied, typeFilterApplied);
+            var events= await _service.GetEventsAsync(page ?? 0, itemsOnPage, organizerFilterApplied, typeFilterApplied);
             var vm = new EventsCatalogIndexViewModel
             {
                 Organizers = await _service.GetOrganizersAsync(),
