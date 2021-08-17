@@ -98,8 +98,7 @@ namespace EventCatalogAPI.Controllers
         }
         private List<Event> ChangePictureUrl(List<Event> events)
         {
-            events.ForEach(events =>
-            events.PictureUrl.Replace("http://externalcatalogtobereplaced", _config["ExternalCatalogUrl"]));
+            events.ForEach(e => e.PictureUrl= e.PictureUrl.Replace("http://externalcatalogbaseurltobereplaced", _config["ExternalCatalogUrl"]));
 
             return events;
 
