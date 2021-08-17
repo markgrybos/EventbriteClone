@@ -26,7 +26,7 @@ namespace WebMvc.Infrastructure
                     var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
                     filterQs = $"/type/{typeQs}/Organizer/{OrganizerQs}";
                 }
-                return $"{baseUri}items{filterQs}?pageIndex={page}&pageSize={take}";
+                return $"{baseUri}events{filterQs}?pageIndex={page}&pageSize={take}";
             }     
         }
     }

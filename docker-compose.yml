@@ -16,6 +16,7 @@ services:
       DatabaseName: EventsDb
       DatabaseUser: sa
       DatabasePassword: EventsAPI!
+      ExternalCatalogUrl: http://localhost:7001
     ports:
       - "7001:80"
     container_name: eventscatalogapi
@@ -31,7 +32,7 @@ services:
       context: .\WebMvc
       dockerfile: Dockerfile
     environment:
-      CatalogUrl: http://eventscatalog
+      EventsCatalogUrl: http://eventscatalog
     ports:
       - "7025:80"
     container_name: webshop
