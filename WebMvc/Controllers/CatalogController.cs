@@ -31,8 +31,8 @@ namespace WebMvc.Controllers
                     ActualPage = page ?? 0,
                     TotalPages = (int)Math.Ceiling((decimal)events.Count / itemsOnPage)
                 },
-                OrganizerFilterApplied = organizerFilterApplied ?? 0,
-                TypesFilterApplied = typeFilterApplied ?? 0
+                OrganizerFilterApplied = organizerFilterApplied ??= 0,
+                TypesFilterApplied = typeFilterApplied ??= 0
 
 
             };
