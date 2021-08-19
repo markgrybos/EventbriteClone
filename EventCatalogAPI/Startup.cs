@@ -36,10 +36,10 @@ namespace EventCatalogAPI
             var databasePassword = Configuration["DatabasePassword"];
             var connectionString = $"Server={databaseServer};Database={databaseName};User Id={databaseUser};Password={databasePassword}";
             services.AddDbContext<CatalogContext>(options => options.UseSqlServer(connectionString));
-            /*services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventCatalogAPI", Version = "v1" });
-            });*/
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
