@@ -23,6 +23,7 @@ namespace WebMvc.Services
         {
             _baseUrl = $"{config["EventsCatalogUrl"]}/api/catalog/";
             _client = client;
+        
         }
         public async Task<EventsCatalog> GetEventsAsync(int page, int size, int? Organizer, int? type)
         {

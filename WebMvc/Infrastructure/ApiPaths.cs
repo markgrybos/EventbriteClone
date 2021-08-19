@@ -17,16 +17,23 @@ namespace WebMvc.Infrastructure
             {
                 return $"{baseUri}EventOrganizers";
             }
-            public static string GetAllCatalogItems(string baseUri, int page, int take, int? Organizer, int? type)
+            public static string GetAllCatalogItems(string baseUri, int page, int take, int? organizer, int? type)
             {
-                var filterQs = string.Empty;
-                if (Organizer.HasValue || type.HasValue)
+                if (organizer.HasValue && type.HasValue)
                 {
-                    var OrganizerQs = (Organizer.HasValue) ? Organizer.Value.ToString() : "null";
-                    var typeQs = (type.HasValue) ? type.Value.ToString() : "null";
-                    filterQs = $"/type/{typeQs}/Organizer/{OrganizerQs}";
+                    return $"{baseUri}events/filtered?EventOraganizerId={organizer}&EventTypeId={type}&pageIndex={page}&pageSize={take}";
                 }
-                return $"{baseUri}events{filterQs}?pageIndex={page}&pageSize={take}";
+                else if (type.HasValue)
+                {
+                    return $"{baseUri}events/filtered?EventTypeId={type}&pageIndex={page}&pageSize={take}";
+                }
+                else if (organizer.HasValue)
+                {
+                    return $"{baseUri}events/filtered?EventOraganizerId={organizer}&pageIndex={page}&pageSize={take}";
+                }
+                return $"{baseUri}events?pageIndex={page}&pageSize={take}";
+
+                
             }     
         }
     }
