@@ -12,6 +12,7 @@ services:
       context: .\EventCatalogAPI
       dockerfile: Dockerfile
     environment:
+      ASPNETCORE_ENVIRONMENT: Development
       DatabaseServer: mssqlserver
       DatabaseName: EventsDb
       DatabaseUser: sa
@@ -34,6 +35,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       EventsCatalogUrl: http://eventscatalog
+      IdentityUrl: http://192.168.0.214:7800
+      CallBackUrl: http://localhost:7025
     ports:
       - "7025:80"
     container_name: webshop
@@ -41,6 +44,7 @@ services:
       - frontend
     depends_on:
       - eventscatalog
+      - tokenserver
 
   tokenserver:
     image: events/tokenapi
@@ -51,13 +55,13 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       MvcClient: http://webmvc
     ports:
-      - "7800:80"   
+      - "7800:80"
     container_name: tokenserviceapi
     networks:
       - backend
       - frontend
     depends_on:
-      - mssqlserver
+      - tokensqlserver
 
   mssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
@@ -67,5 +71,16 @@ services:
     ports:
       - "1500:1433"
     container_name: eventssqlserver
+    networks:
+      - backend
+
+  tokensqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: EventsAPI!
+    ports:
+      - "1449:1433"
+    container_name: eventstokensqlserver
     networks:
       - backend
