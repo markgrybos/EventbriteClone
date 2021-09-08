@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,30 @@ namespace CartApi
                 options.RequireHttpsMetadata = false;
                 options.Audience = "basket";
             });
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Basket HTTP API",
+                    Version = "v1",
+                    Description = "The Basket Service HTTP API"
+                });
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        Implicit = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri($"{Configuration.GetValue<string>("IdentityUrl")}/connect/authorize", UriKind.Absolute),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                 { "basket", "Basket Api" }
+                            }
+                        }
+                    }
+                });
+            });
 
         }
 
@@ -71,6 +96,11 @@ namespace CartApi
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSwagger()
+                .UseSwaggerUI(e =>
+                {
+                    e.SwaggerEndpoint("/swagger/v1/swagger.json", "BasketAPI V1");
+                });
 
             app.UseEndpoints(endpoints =>
             {
