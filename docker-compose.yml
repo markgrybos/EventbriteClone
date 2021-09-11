@@ -35,7 +35,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionString: basket.data
-      IdentityUrl: http://192.168.0.214:7800
+      IdentityUrl: http://192.168.1.8:7800
     ports:
       - "7010:80"
     container_name: cartapi
@@ -54,8 +54,9 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       EventsCatalogUrl: http://eventscatalog
-      IdentityUrl: http://192.168.0.214:7800
+      IdentityUrl: http://192.168.1.8:7800
       CallBackUrl: http://localhost:7025
+      CartUrl: http://cart
     ports:
       - "7025:80"
     container_name: webshop
@@ -64,6 +65,7 @@ services:
     depends_on:
       - eventscatalog
       - tokenserver
+      - cart
 
   tokenserver:
     image: events/tokenapi

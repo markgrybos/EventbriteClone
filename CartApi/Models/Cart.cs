@@ -8,14 +8,14 @@ namespace CartApi.Models
     public class Cart
     {
         public string BuyerId { get; set; }
-        public List<CartItem> Events { get; set; }
+        public List<CartItem> Items { get; set; }
 
         public Cart() { }
 
         public Cart(string cartId)
         {
             BuyerId = cartId;
-            Events = new List<CartItem>();
+            Items = new List<CartItem>();
         }
     }
 }

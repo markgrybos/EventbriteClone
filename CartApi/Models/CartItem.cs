@@ -12,7 +12,7 @@ namespace CartApi.Models
         public string EventName { get; set; }
         public string EventURL { get; set; }
         public decimal EventPrice { get; set; }
-        public decimal NewUnitPrice { get; set; }
+        public decimal OldEventPrice { get; set; }
         public int Tickets { get; set; }
     }
 }
