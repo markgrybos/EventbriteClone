@@ -57,6 +57,9 @@ services:
       IdentityUrl: http://192.168.1.8:7800
       CallBackUrl: http://localhost:7025
       CartUrl: http://cart
+      OrderUrl: http://order
+      StripePublicKey: 
+      StripePrivateKey: 
     ports:
       - "7025:80"
     container_name: webshop
@@ -66,6 +69,7 @@ services:
       - eventscatalog
       - tokenserver
       - cart
+      - order
 
   tokenserver:
     image: events/tokenapi
@@ -113,3 +117,30 @@ services:
     container_name: basketdata
     networks: 
       - backend
+  order:
+    build:
+      context: .\OrderApi
+      dockerfile: Dockerfile
+    image: events/orderapi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.1.8:7800
+      DatabaseServer: mssqlserver
+      DatabaseName: OrdersDb
+      DatabaseUser: sa
+      DatabasePassword: EventsAPI!
+    ports:
+      - "7020:80"
+    container_name: orderapi
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mssqlserver
+      - tokenserver
+      
