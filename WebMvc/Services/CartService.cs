@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 using WebMvc;
 using WebMvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
-//using WebMvc.Models.OrderModels;
+using WebMvc.Models.OrderModels;
 
 namespace WebMvc.Services
 {
@@ -85,27 +85,27 @@ namespace WebMvc.Services
             return response;
         }
 
-        //public Order MapCartToOrder(Cart cart)
-        //{
-        //    var order = new Order();
-        //    order.OrderTotal = 0;
+        public Order MapCartToOrder(Cart cart)
+        {
+            var order = new Order();
+            order.OrderTotal = 0;
 
-        //    cart.Items.ForEach(x =>
-        //    {
-        //        order.OrderItems.Add(new OrderItem()
-        //        {
-        //            ProductId = int.Parse(x.ProductId),
+            cart.Items.ForEach(x =>
+            {
+                order.OrderItems.Add(new OrderItem()
+                {
+                    EventId = int.Parse(x.EventId),
 
-        //            PictureUrl = x.PictureUrl,
-        //            ProductName = x.ProductName,
-        //            Units = x.Quantity,
-        //            UnitPrice = x.UnitPrice
-        //        });
-        //        order.OrderTotal += (x.Quantity * x.UnitPrice);
-        //    });
+                    PictureUrl = x.EventURL,
+                    EventName = x.EventName,
+                    Tickets = x.Tickets,
+                    EventPrice = x.EventPrice
+                });
+              order.OrderTotal += (x.Tickets * x.EventPrice);
+          });
 
-        //    return order;
-        //}
+            return order;
+        }
 
 
         public async Task<Cart> SetQuantities(ApplicationUser user, Dictionary<string, int> quantities)
